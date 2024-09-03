@@ -1,0 +1,57 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class binarySearch {
+    public static int split(int ar[], int search) {
+        int li = 0;
+        int hi = ar.length - 1;
+        
+        while (li <= hi) {
+            int mid = (li + hi) / 2;// calculating the mid
+            
+            if (ar[mid] == search) {
+                return mid;
+            }
+            if (ar[mid] < search) {
+                li = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+        
+        // Return -1 if the element is not found
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the number of elements in the array:");
+        int n = sc.nextInt();   
+
+        // Create the array
+        int[] ar = new int[n];// allocating the space in the memory
+
+        System.out.println("Enter the elements:");
+        for (int i = 0; i < n; i++) {
+            ar[i] = sc.nextInt();
+        }
+
+        // Sort the array to prepare for binary search
+        Arrays.sort(ar);// as binary search always perfer sorted array
+
+        System.out.println("Enter the element to search:");
+        int search = sc.nextInt();
+
+        // Perform binary search
+        int result = split(ar, search);
+
+        // Output the result
+        if (result == -1) {
+            System.out.println("Element is not present in the array");
+        } else {
+            System.out.println("Element is present at index " + result);
+        }
+
+    }
+}
