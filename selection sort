@@ -1,0 +1,53 @@
+#include<stdio.h>
+
+// Function prototype
+void selection(int a[], int n);
+
+void main()
+{
+    int i, a[20], n;
+    
+    printf("\nEnter the size of the array: ");
+    scanf("%d", &n);
+    
+    printf("Enter the elements of the array:\n");
+    for(i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+    
+    // Sorting the array
+    selection(a, n);
+    
+    // Displaying the sorted data
+    printf("\nThe sorted data:\n");
+    for(i = 0; i < n; i++)
+    {
+        printf("%d ", a[i]);
+    }
+}
+
+// Selection sort function
+void selection(int a[], int n)
+{
+    int i, j, small, temp;
+    
+    // Finding the smallest element and swapping
+    for(i = 0; i < n - 1; i++) // Outer loop runs for n-1 passes
+    {
+        small = i; // Assume the current index is the smallest
+        
+        for(j = i + 1; j < n; j++) // Inner loop to find the smallest element
+        {
+            if(a[j] < a[small])
+            {
+                small = j;
+            }
+        }
+        
+        // Swap the smallest element with the first element of the unsorted part
+        temp = a[small];
+        a[small] = a[i];
+        a[i] = temp;
+    }
+}
